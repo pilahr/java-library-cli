@@ -24,6 +24,10 @@ public class Book implements Comparable<Book> {
         this.counter = counter;
     }
 
+    public Book() {
+
+    }
+
     public long getId() {
         return id;
     }
