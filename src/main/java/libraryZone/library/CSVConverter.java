@@ -10,10 +10,7 @@ import com.opencsv.exceptions.CsvException;
 import libraryZone.book.Book;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class CSVConverter {
 
@@ -22,7 +19,7 @@ public class CSVConverter {
             CSVReader csvReader = new CSVReader(new FileReader(file));
             List<String[]> data = csvReader.readAll();
 
-            HashSet<Book> hsBooks = new HashSet<>();
+            HashMap<String, String> booksMap = new HashMap();
             String[] header = data.get(0);
             System.out.println("header: " + Arrays.toString(header));
 
@@ -33,13 +30,15 @@ public class CSVConverter {
             }
 
             Book newBook = new Book();
+            String col = null;
+            String row = null;
             for (int j = 0; j < dataRow.length; j++) {
 
-                String col = header[j].trim();
-                System.out.println("col: " + col);
+                col = header[j].trim();
+//                System.out.println("col: " + col);
 
-                String row = dataRow[j].trim();
-                System.out.println("row: " + row);
+                row = dataRow[j].trim();
+//                System.out.println("row: " + row);
 
 
                 switch (col) {
@@ -64,14 +63,17 @@ public class CSVConverter {
                 }
             }
             newBook.setCounter(0);
-            hsBooks.add(newBook);
+
+            booksMap.put(col,row);
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String jsonBook = gson.toJson(hsBooks);
+            String jsonBook = gson.toJson(booksMap);
 
             FileWriter fileWriter = new FileWriter("hsBooks.json");
             fileWriter.write(jsonBook);
             fileWriter.close();
+
+
 
 
         } catch (IOException | CsvException e) {
