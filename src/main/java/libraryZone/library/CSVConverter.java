@@ -2,10 +2,7 @@ package libraryZone.library;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.opencsv.CSVParser;
-import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvException;
 import libraryZone.book.Book;
 
@@ -19,7 +16,7 @@ public class CSVConverter {
             CSVReader csvReader = new CSVReader(new FileReader(file));
             List<String[]> data = csvReader.readAll();
 
-            HashMap<String, String> booksMap = new HashMap();
+            HashMap<String, String> booksMap = new HashMap<>();
             String[] header = data.get(0);
 //            System.out.println("header: " + Arrays.toString(header));
 
@@ -61,18 +58,17 @@ public class CSVConverter {
                         break;
                 }
             }
-            newBook.setCounter(0);
+//            newBook.setCounter(0);
             booksMap.put(col, row);
+
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String jsonBook = gson.toJson(booksMap);
 
+
             FileWriter fileWriter = new FileWriter("src/main/java/libraryZone/library/books_data.json");
             fileWriter.write(jsonBook);
             fileWriter.close();
-
-
-
 
         } catch (IOException | CsvException e) {
             e.printStackTrace();
