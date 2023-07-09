@@ -21,12 +21,12 @@ public class CSVConverter {
 
             HashMap<String, String> booksMap = new HashMap();
             String[] header = data.get(0);
-            System.out.println("header: " + Arrays.toString(header));
+//            System.out.println("header: " + Arrays.toString(header));
 
             String[] dataRow = {};
             for (int i = 1; i < data.size(); i++) {
                 dataRow = data.get(i);
-                System.out.println("dataRow: " + Arrays.toString(dataRow));
+//                System.out.println("dataRow: " + Arrays.toString(dataRow));
             }
 
             Book newBook = new Book();
@@ -35,10 +35,9 @@ public class CSVConverter {
             for (int j = 0; j < dataRow.length; j++) {
 
                 col = header[j].trim();
-//                System.out.println("col: " + col);
-
                 row = dataRow[j].trim();
-//                System.out.println("row: " + row);
+
+                booksMap.put(col,row);
 
 
                 switch (col) {
@@ -63,13 +62,12 @@ public class CSVConverter {
                 }
             }
             newBook.setCounter(0);
-
-            booksMap.put(col,row);
+            booksMap.put(col, row);
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String jsonBook = gson.toJson(booksMap);
 
-            FileWriter fileWriter = new FileWriter("hsBooks.json");
+            FileWriter fileWriter = new FileWriter("src/main/java/libraryZone/library/books_data.json");
             fileWriter.write(jsonBook);
             fileWriter.close();
 

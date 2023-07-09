@@ -92,9 +92,10 @@ public class Book implements Comparable<Book> {
                 ", genre='" + genre + '\'' +
                 ", subgenre='" + subgenre + '\'' +
                 ", publisher='" + publisher + '\'' +
-                ", counter=" + counter +
                 '}';
     }
+
+
 
     @Override
     public int compareTo(Book o) {
