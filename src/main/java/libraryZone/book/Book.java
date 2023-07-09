@@ -1,9 +1,5 @@
 package libraryZone.book;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 public class Book implements Comparable<Book> {
 
     private long id;
@@ -84,7 +80,8 @@ public class Book implements Comparable<Book> {
         this.counter = counter;
     }
 
-    public String toJson() {
+    @Override
+    public String toString() {
         return "Book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
@@ -94,8 +91,6 @@ public class Book implements Comparable<Book> {
                 ", publisher='" + publisher + '\'' +
                 '}';
     }
-
-
 
     @Override
     public int compareTo(Book o) {
