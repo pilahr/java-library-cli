@@ -16,7 +16,8 @@ public class CSVConverter {
             CSVReader csvReader = new CSVReader(new FileReader(file));
             List<String[]> data = csvReader.readAll();
 
-            List<Book> books = new ArrayList<>();
+//            List<Book> books = new ArrayList<>();
+            HashSet<Book> books = new HashSet<>();
             String[] header = data.get(0); //[Number, Title, Author, Genre, SubGenre, Publisher]
 
             String[] dataRow = {};
