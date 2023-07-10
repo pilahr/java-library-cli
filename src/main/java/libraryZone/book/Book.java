@@ -8,16 +8,16 @@ public class Book implements Comparable<Book> {
     private String genre;
     private String subgenre;
     private String publisher;
-    private int counter = 0;
+//    private int counter = 0;
 
-    public Book(long id, String title, String author, String genre, String subgenre, String publisher, int counter) {
+    public Book(long id, String title, String author, String genre, String subgenre, String publisher) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.subgenre = subgenre;
         this.publisher = publisher;
-        this.counter = counter;
+//        this.counter = counter;
     }
 
     public Book() {
@@ -72,13 +72,13 @@ public class Book implements Comparable<Book> {
         this.publisher = publisher;
     }
 
-    public int getCounter() {
-        return counter;
-    }
-
-    public void setCounter(int counter) {
-        this.counter = counter;
-    }
+//    public int getCounter() {
+//        return counter;
+//    }
+//
+//    public void setCounter(int counter) {
+//        this.counter = counter;
+//    }
 
     @Override
     public String toString() {
