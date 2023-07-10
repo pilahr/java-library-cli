@@ -13,8 +13,5 @@ public class LibraryApplication {
         CommandRunner command = new CommandRunner();
         command.buildLibrary();
 
-//        CSVConverter csvConverter = new CSVConverter();
-//        csvConverter.read(new File("src/main/java/libraryZone/library/books_data.csv"));
-
     }
 }

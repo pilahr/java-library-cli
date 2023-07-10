@@ -4,6 +4,5 @@ public enum UserType {
     admin, customer;
 
     UserType() {
-
     }
 }

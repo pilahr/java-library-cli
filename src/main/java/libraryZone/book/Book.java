@@ -1,5 +1,7 @@
 package libraryZone.book;
 
+import java.util.MissingFormatArgumentException;
+
 public class Book implements Comparable<Book> {
 
     private long id;
@@ -8,16 +10,16 @@ public class Book implements Comparable<Book> {
     private String genre;
     private String subgenre;
     private String publisher;
-//    private int counter = 0;
+    private int counter = 0;
 
-    public Book(long id, String title, String author, String genre, String subgenre, String publisher) {
+    public Book(long id, String title, String author, String genre, String subgenre, String publisher, int counter) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.subgenre = subgenre;
         this.publisher = publisher;
-//        this.counter = counter;
+        this.counter = counter;
     }
 
     public Book() {
@@ -72,13 +74,20 @@ public class Book implements Comparable<Book> {
         this.publisher = publisher;
     }
 
-//    public int getCounter() {
-//        return counter;
-//    }
-//
-//    public void setCounter(int counter) {
-//        this.counter = counter;
-//    }
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
+    public String getBookInformation() throws MissingFormatArgumentException {
+        System.out.printf("(#%d), %s Written by: %s. This book is a %s and %s book. Published by: %s. [LOANED: %d times]",
+                this.getId(), this.getTitle(), this.getAuthor(), this.getGenre(), this.getSubgenre(), this.getPublisher(), this.getCounter());
+        return "";
+    }
+
 
     @Override
     public String toString() {
