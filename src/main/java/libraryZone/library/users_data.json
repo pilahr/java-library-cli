@@ -1,4 +1,6 @@
-{
-  "id": 0,
-  "hasLoanedBooks": false
-}
+[
+  {
+    "id": 0,
+    "hasLoanedBooks": false
+  }
+]

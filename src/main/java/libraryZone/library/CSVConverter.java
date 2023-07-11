@@ -69,57 +69,6 @@ public class CSVConverter {
             e.printStackTrace();
         }
     }
-
-//    public ArrayList<Book> fullBookLibraryArr = new ArrayList<>();
-//    public void copyLibraryArr() {
-//        fullBookLibraryArr.addAll(books);
-//    }
-//
-//    public int getBooksCount() {
-//        return books.size();
-//    }
-//
-//    public void displayAllBooks() {
-//        for (Book book : books) {
-//            System.out.println(book.getBookInformation("return"));
-//        }
-//    }
-//
-//    public void displayLimitedBooks (int limit) {
-//        System.out.println("\t\t *** Books in the Library ***");
-//        System.out.println("Amount of books in the Library: " + this.getBooksCount());
-//
-//        for (int i = 0; i < limit; i++) {
-//            System.out.println(books.get(i).getBookInformation("return"));
-//        }
-//    }
-//
-//    public void sortBookBy(BookType sortFilter, int limit) {
-//        switch (sortFilter) {
-//            case title:
-//                books.sort(new SortBooksByTitle());
-//                break;
-//            case author:
-//                books.sort(new SortBooksByAuthor());
-//                break;
-//            case genre:
-//                books.sort(new SortBooksByGenre());
-//                break;
-//            case publisher:
-//                books.sort(new SortBooksByPublisher());
-//                break;
-//            case counter:
-//                books.sort(new SortBooksByCounter());
-//                break;
-//            default:
-//                Collections.sort(books);
-//        }
-//        displayLimitedBooks(limit);
-//    }
-
-
-
-
 }
 
 

@@ -12,10 +12,6 @@ public class CommandRunner {
     Library library = new Library();
 
     public void buildLibrary() throws Exception {
-
-        Library library = new Library();
-        library.generateBooks();
-
         start();
     }
 
@@ -38,36 +34,16 @@ public class CommandRunner {
             case "4":
                 exit();
                 break;
-            default:
-                wrongInput("start");
-                break;
         }
     }
 
-    List<User> users = new ArrayList<>();
+    public final String USERS = "src/main/java/libraryZone/library/users_data.json";
+    public Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    HashMap<String, String> usersMap = new HashMap<>();
+
     private void signUp() throws IOException {
         System.out.println("\t\t *** Sign Up ***");
 
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Please Enter Your Username");
-//        String userName = scanner.nextLine();
-//
-//        System.out.println("Please Enter Your Password");
-//        String password = scanner.nextLine();
-
-        User user = createUserObject();
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-        try (FileWriter writer = new FileWriter("src/main/java/libraryZone/library/users_data.json")) {
-            gson.toJson(user, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-    public User createUserObject() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please Enter Your Username");
         String userName = scanner.nextLine();
@@ -75,38 +51,39 @@ public class CommandRunner {
         System.out.println("Please Enter Your Password");
         String password = scanner.nextLine();
 
-        User user = new User();
-        user.setUserName(userName);
-        user.setPassword(password);
+        List<User> users = new ArrayList<>();
+        User newUser = new User();
 
-        List<User> userList = new ArrayList<>();
-        userList.add(user);
+        newUser.setUserName(userName);
+        newUser.setPassword(password);
+        newUser.setHasLoanedBooks(false);
 
-        return user;
-    }
+        users.add(newUser);
+
+        String jsonUser = gson.toJson(users);
+        FileWriter fileWriter = new FileWriter("src/main/java/libraryZone/library/users_data.json");
+        fileWriter.write(jsonUser);
+        fileWriter.close();
 
 
-    private void wrongInput(String option) throws Exception {
-        switch (option) {
-            case "login":
-                System.out.println("User Not Found");
-                System.out.println("1: Retry \t2: Back to the main menu");
-                String select = scanner.nextLine();
-                if (select.equals("1")) {
-                    logIn();
-                } else if (select.equals("2")) {
-                    start();
-                } else {
-                    wrongInput("login");
-                }
-                break;
-            case "start":
-                start();
-                break;
-        }
-    }
 
-    private void logIn() {
+//        usersMap.put(userName,password);
+//
+//        String jsonUser = gson.toJson(usersMap);
+//        FileWriter fileWriter = new FileWriter("src/main/java/libraryZone/library/users_data.json");
+//        fileWriter.write(jsonUser);
+//        fileWriter.close();
+//
+//        User newUser = new User();
+//        newUser.setUserName(usersMap.get(password));
+//        newUser.setPassword(usersMap.get(userName));
+//        {
+//            "admin": "1111"
+//        }
+}
+
+
+    private void logIn() throws FileNotFoundException {
         System.out.println("\t\t *** LogIn Menu ***");
         System.out.println("Please Enter Your Username");
         String userName = scanner.nextLine();
@@ -117,24 +94,14 @@ public class CommandRunner {
 
         System.out.println("\t\t *** LogIn Menu *** \n" + "UserName: " + userName + "\n" + "Password: ********");
 
-//        JsonParser parser = new JsonParser();
-//        try {
-//            Object obj = parser.parse(new FileReader("src/main/java/libraryZone/library/mockUser.json"));
-//            JsonObject jsonObject = (JsonObject) obj;
-//            JsonArray userNameData = (JsonArray) jsonObject.get("username");
-//            JsonArray passwordData = (JsonArray) jsonObject.get("password");
+//        FileReader fileReader = new FileReader(USERS);
 //
-//            if (userName.equalsIgnoreCase(String.valueOf(userNameData)) && password.equalsIgnoreCase(String.valueOf(passwordData))) {
-//                System.out.println("Log in success!");
-//            } else {
-//                System.out.println("Please enter a valid username and password");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
+//        User[] usersArr = gson.fromJson(fileReader, User[].class);
+//        List<User> users = Arrays.asList(usersArr);
+//
+//        for (User user : users) {
+
 //        }
-
-
-
 
     }
 

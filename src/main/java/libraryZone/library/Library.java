@@ -10,7 +10,7 @@ import java.util.*;
 
 
 public class Library {
-    public ArrayList<User> usersList = new ArrayList<>();
+
     public ArrayList<Book> booksList = new ArrayList<>();
     public HashMap<Long, Long> loanedBook = new HashMap<>();
 
@@ -19,23 +19,24 @@ public class Library {
     }
 
     // USERS
-    public void addUser(User user) {
-        usersList.add(user);
-    }
-
-    public void deleteUser(long id) {
-        for (User user : usersList) {
-            if (user.getId() == id) {
-                usersList.remove(user);
-                return;
-            }
-        }
-        System.out.println("Wrong Id");
-    }
-
-    public int getUserCount() {
-        return usersList.size();
-    }
+//    public ArrayList<User> usersList = new ArrayList<>();
+//    public void addUser(User user) {
+//        usersList.add(user);
+//    }
+//
+//    public void deleteUser(long id) {
+//        for (User user : usersList) {
+//            if (user.getId() == id) {
+//                usersList.remove(user);
+//                return;
+//            }
+//        }
+//        System.out.println("Wrong Id");
+//    }
+//
+//    public int getUserCount() {
+//        return usersList.size();
+//    }
 
     // BOOKS
     public void addBook(Book book) {
@@ -52,13 +53,6 @@ public class Library {
         System.out.println("Wrong Id");
     }
 
-    public void generateBooks() throws Exception {
-        CSVConverter csvConverter = new CSVConverter();
-        for (Book book : csvConverter.books) {
-            System.out.println("Books" + book);
-
-        }
-    }
     public final String BOOKS = "src/main/java/libraryZone/library/books_data.json";
     public Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -66,13 +60,10 @@ public class Library {
         FileReader fileReader = new FileReader(BOOKS);
         Book[] booksArr = gson.fromJson(fileReader, Book[].class);
         List<Book> books = Arrays.asList(booksArr);
-        System.out.println("The Library has totally: " + books.size() + " books.");
+        System.out.println("** The Library has totally: " + books.size() + " books. **\n");
 
         for (Book book : books) {
             System.out.println(book.getBookInformation());
         }
     }
-
-
-
 }

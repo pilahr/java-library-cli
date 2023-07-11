@@ -8,13 +8,17 @@ public class User {
     private String password;
     private boolean hasLoanedBooks = false;
 
-    public User(long id, String userName, String password) {
-        this.id = generateUniqueId();
+    public User(long id, String userName, String password, boolean hasLoanedBooks) {
+        this.id = id;
         this.userName = userName;
         this.password = password;
+        this.hasLoanedBooks = hasLoanedBooks;
     }
 
-    public User(){
+    public User() {
+    }
+
+    public User(long id, String userName, String password) {
     }
 
 
@@ -34,16 +38,16 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUserName(String userName) {
+        return this.userName;
     }
 
     public void setUserName(String userName) {
         this.userName = this.userName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPassword(String password) {
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -58,9 +62,17 @@ public class User {
         this.hasLoanedBooks = hasLoanedBooks;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", hasLoanedBooks=" + hasLoanedBooks +
+                '}';
+    }
 
-
-//    public void loanBook(int id) {
+    //    public void loanBook(int id) {
 //        for (Book book : Library.booksList) {
 //            if (book.getId() == id) {
 //                this.loanedBooks.add(book);
